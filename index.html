@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>Code Buddy</title>
+    <style>
+        *{
+            font-family: 'bebas neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 1.5em;
+        }
+        body{
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box{
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding: 2%;
+            width: 90%;
+            border-radius: 10px;
+        }
+        h1{
+            align-self: center;
+            font-weight: 900;
+            font-size: 2em;
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
+        label{
+            color:red;
+            font-weight: bold;
+            text-decoration: underline;
+            text-decoration-color: black;
+        }
+        option{
+            font-size: medium;
+        }
+        span{
+            align-self: center;
+        }
+        span a{
+            text-decoration: overline;
+            text-decoration-color: rgb(49, 255, 76);
+            color: black;
+            font-size: 1em;
+        }
+        #eg{
+            font-style: italic;
+            color: rgb(150, 150, 150);
+        }
+        #copy-btn{
+            display: none;
+            font-size: 1em;
+        }
+        #name{
+            font-size: 1em;
+        }
+        button{
+            width: 100%;
+            background-color: white;
+            color: red;
+            border: 2.5px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <hr>
+        <span><a href="https://instagram.com/nitesh.dd?igshid=MzNlNGNkZWQ4Mg==">A NITESH PRODUCT [click]</a></span>
+        <hr>
+
+        <h1>Code Buddy</h1>
+
+        <label for="languageSelect">Select language:</label>
+        <select id="languageSelect" requiaqua>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="javascript">JavaScript</option>
+            <option value="csharp">C#</option>
+            <option value="Node">Node</option>
+            <option value="PHP">PHP</option>
+            <option value="HTML">HTML</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Swift">Swift</option>
+        </select>
+
+        <label for="name">Write code for:</label>
+        <input type="text" id="nameInput" name="name">
+        <p id="eg">Eg: a happy birthday message sending app</p>
+
+        <button onclick="showName()">Generate Prompt</button>
+        <div>
+            <p id="name"></p>
+            <button id="copy-btn" onclick="copyText()">Copy Prompt</button>
+        </div>
+    </div>
+</body>
+<script>
+    function showName() {
+
+        let languageSelect = document.getElementById("languageSelect");
+        let copy_btn = document.getElementById("copy-btn");
+        let language = languageSelect.options[languageSelect.selectedIndex].text;
+
+        let name = document.getElementById("nameInput").value;
+        let msg = `Write code in ${language} for ${name}`
+        document.getElementById("name").textContent = msg;
+
+        copy_btn.style.display = 'block';
+
+    }
+    function copyText() {
+        let text = document.getElementById("name").innerText;
+        let input = document.createElement("input");
+        input.setAttribute("value", text);
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+    }
+</script>
+
+</html>
